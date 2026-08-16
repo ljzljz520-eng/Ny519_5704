@@ -1,0 +1,12 @@
+name: classroom-example
+curve:
+  amplitude: 2.5
+  frequency: 0.5
+  phase: 0.25
+  start: -3
+  end: 3
+  points: 61
+view:
+  yaw: 45
+  pitch: 15
+  roll: 5
