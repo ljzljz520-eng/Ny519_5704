@@ -44,6 +44,13 @@ func Generate(request SampleRequest) (CoordinateSet, error) {
 			Z: 0,
 		}
 	}
+	// The final sample is pinned to the exact interval end so the curve always
+	// terminates at request.End, avoiding drift from the stepped intermediate values.
+	points[len(points)-1] = Point{
+		X: request.End,
+		Y: request.Amplitude * math.Sin(request.Frequency*request.End+request.Phase),
+		Z: 0,
+	}
 
 	return CoordinateSet{Function: request, Step: step, Points: points}, nil
 }
