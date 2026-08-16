@@ -36,8 +36,11 @@ func Generate(request SampleRequest) (CoordinateSet, error) {
 
 	step := (request.End - request.Start) / float64(request.Points-1)
 	points := make([]Point, request.Points)
-	for index := 0; index < len(points)-1; index++ {
+	for index := range points {
 		x := request.Start + float64(index)*step
+		if index == len(points)-1 {
+			x = request.End
+		}
 		points[index] = Point{
 			X: x,
 			Y: request.Amplitude * math.Sin(request.Frequency*x+request.Phase),
